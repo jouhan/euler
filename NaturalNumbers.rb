@@ -8,15 +8,15 @@ def calc_mults(max, *mult)
 
   # Adds multiples of each number.
   mult.each do |m|
-    product = product*m
+    product *= m
     (1..(max-1)/m).each do |i|
-      sum = sum + m*i
+      sum += m*i
     end
   end
 
   # Subtracts multiples of product.
   (1..(max-1)/product).each do |i|
-    sum = sum - product*i
+    sum -= product*i
   end
 
   sum
