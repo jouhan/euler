@@ -2,24 +2,11 @@
 # (Assumes valid input.)
 #
 # Returns sum.
-def calc_mults(max, *mult)
-  sum = 0
-  product = 1
-
-  # Adds multiples of each number.
-  mult.each do |m|
-    product *= m
-    (1..(max-1)/m).each do |i|
-      sum += m*i
-    end
+def calc(max, *mult)
+  max.times.inject do |sum, i|
+    sum += i if mult.any? {|m| i%m == 0}
+    sum
   end
-
-  # Subtracts multiples of product.
-  (1..(max-1)/product).each do |i|
-    sum -= product*i
-  end
-
-  sum
 end
 
-puts calc_mults(1000, 3, 5)
+puts calc(1000, 3, 5) # => 233168
