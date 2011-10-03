@@ -1,4 +1,4 @@
-require 'Prime'
+require 'prime'
 
 def prime
   Enumerator.new { |y|
