@@ -2,15 +2,16 @@ def is_palindrome?(num)
   num.to_s == num.to_s.reverse
 end
 
-palindromes = [0]
+max_palindrome = 0
 max = 999
 
-max.downto(100).each do |x|
-  max.downto(x).each do |y|
-    val = x*y
-    palindromes << val if is_palindrome?(val)
-    break if val < palindromes.max
+max.downto(101) do |x|
+  max.downto(x) do |y|
+    val = x*y  
+    if is_palindrome?(val)
+      (val > max_palindrome) ? max_palindrome = val : break
+    end
   end
 end
 
-puts palindromes.max
+puts max_palindrome # => 906609
