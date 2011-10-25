@@ -3,12 +3,16 @@ require 'prime'
 def prime
   Enumerator.new { |y|
     primes, i = [2], 3
+    skip3 = false
     loop do
+      # Checks against mod of previously-found prime numbers.
       unless primes.any? { |p| i%p==0 } then
         primes << i
         y.yield i
       end
-      i+=2
+      # Skips multiples of 2 and 3 (after 6).
+      skip3 = !skip3 if i > 6 
+      skip3 ? i+=4 : i+=2
     end
   }
 end
